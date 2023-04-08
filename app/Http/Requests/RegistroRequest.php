@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rules\Password  as PasswordRules;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Password as PasswordRules;
 
 class RegistroRequest extends FormRequest
 {
