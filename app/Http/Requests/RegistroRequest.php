@@ -27,9 +27,21 @@ class RegistroRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'confirmed',
-            PasswordRules::min(8)->letters()->symbols()->numbers()
+            'password' => [
+                'required', 'confirmed',
+                PasswordRules::min(8)->letters()->symbols()->numbers()
             ]
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name' => 'El nombre es obligatorio',
+            'email.required' => 'El email es obligatorio',
+            'email.email' => 'El email no es valido',
+            'email.unique' => 'El email ingresado ya se encuentra registrado', 
+            'password' => 'El password es obligatorio, debe contener al menos 8 caracteres, un simbolo y por lo menos un numero.'
         ];
     }
 }
