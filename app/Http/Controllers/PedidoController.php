@@ -18,7 +18,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        return new PedidoCollection(Pedido::where('estado', 0)->get());
+        return new PedidoCollection(Pedido::with('user')->with('productos')->where('estado', 0)->get());
     }
 
     /**
@@ -81,7 +81,11 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        //
+        $pedido->estado = 1;
+        $pedido->save();
+        return [
+            'pedido' => $pedido
+        ];
     }
 
     /**

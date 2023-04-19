@@ -15,7 +15,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return new ProductoCollection(Producto::where('disponible',1)->orderBy('id', 'DESC')->get());
+        return new ProductoCollection(Producto::where('disponible', 1)->orderBy('id', 'DESC')->get());
         //return new ProductoCollection(Producto::where('disponible',1)->orderBy('id', 'DESC')->paginate(10));
         //return new ProductoCollection(Producto::all());
     }
@@ -51,7 +51,11 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $producto->disponible = 0;
+        $producto->save();
+        return [
+            'producto' => $producto
+        ];
     }
 
     /**
